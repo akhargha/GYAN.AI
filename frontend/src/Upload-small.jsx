@@ -31,8 +31,6 @@ export default function Upload() {
             </h1>
           </article>
           <div style={{ marginTop: "40px", marginBottom: "40px" }}>
-            {" "}
-            {/* Add margin top and bottom */}
             <UploadBox />
           </div>
         </div>

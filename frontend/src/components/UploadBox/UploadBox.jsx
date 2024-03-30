@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { Card, CardHeader, CardBody, Image, Button } from "@nextui-org/react";
+import React, { useState, useRef, useEffect } from "react";
+import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
 import axios from "axios";
 import video from "../../assets/video.png";
 
@@ -10,14 +10,20 @@ export default function UploadBox() {
   const fileInputRef = useRef(null);
 
   const handleFileSelect = (event) => {
-    setSelectedFile(event.target.files[0]);
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+    }
   };
 
-  const uploadFile = () => {
-    if (!selectedFile) {
-      alert("Please select a file first");
-      return;
+  useEffect(() => {
+    if (selectedFile) {
+      uploadFile();
     }
+  }, [selectedFile]);
+
+  const uploadFile = () => {
+    if (!selectedFile) return;
 
     const formData = new FormData();
     formData.append("file", selectedFile);
@@ -32,7 +38,9 @@ export default function UploadBox() {
         alert("File uploaded successfully");
         setNotes(response.data.notes); // Update the notes state with the received data
       })
-      .catch((error) => alert("Error uploading file"));
+      .catch((error) => {
+        alert("Error uploading file");
+      });
   };
 
   return (
@@ -47,7 +55,7 @@ export default function UploadBox() {
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={() => fileInputRef.current.click()} // Simulate click on file input when the card is clicked
+        onClick={() => fileInputRef.current.click()}
       >
         <CardHeader className="pb-0 pt-2 px-4 flex justify-center items-center">
           <h2 className="font-bold text-large" style={{color: "rgb(181, 179, 179)"}}>Upload your video here</h2>
@@ -61,7 +69,6 @@ export default function UploadBox() {
             style={{ marginLeft: "50px" }}
           />
           <input type="file" style={{ display: "none" }} onChange={handleFileSelect} ref={fileInputRef} />
-          <Button auto flat color="primary" onClick={uploadFile}>Upload</Button>
           {notes && (
             <div>
               <h2>Notes:</h2>
