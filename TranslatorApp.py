@@ -23,9 +23,12 @@ TTS_HEADERS = {"Authorization": "Bearer"} # Put your changes for Key here
 # Define the namespace
 ns = api.namespace('translation', description='Translation services')
 
-with open('uploads/english.json', 'r') as f:
+# The fixed string you want to translate
+FIXED_STRING = "Hello, world!"
+
+with open('uploads/transcript.json', 'r') as f:
     data = json.load(f)
-FIXED_STRING = data.get('notes')
+FIXED_STRING = data.get('transcript')
 
 def save_translation_as_json(filename, translated_text):
     filepath = os.path.join('uploads', filename)

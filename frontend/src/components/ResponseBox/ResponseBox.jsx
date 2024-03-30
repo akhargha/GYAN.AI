@@ -16,7 +16,6 @@ export default function ResponseBox({ language }) {
     import(`../../../../uploads/${language.toLowerCase()}.json`)
       .then((data) => {
         setNotesData(data.default);
-        console.log(data.default);
       })
       .catch((error) => {
         console.error("Error fetching notes data:", error);
@@ -38,7 +37,7 @@ export default function ResponseBox({ language }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoaded(true);
-    }, 2000); // Change to false after 5 seconds
+    }, 5000); // Change to false after 5 seconds
     return () => clearTimeout(timer);
   }, [notesData]);
 

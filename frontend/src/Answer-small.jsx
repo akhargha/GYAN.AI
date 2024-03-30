@@ -11,7 +11,7 @@ import {
 } from "@nextui-org/react";
 
 export default function Answer() {
-  const [selectedKeys, setSelectedKeys] = React.useState(new Set(["English"]));
+  const [selectedKeys, setSelectedKeys] = React.useState(new Set(["notes"]));
 
   const selectedValue = React.useMemo(
     () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
