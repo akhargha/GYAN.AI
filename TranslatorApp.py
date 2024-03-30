@@ -18,7 +18,7 @@ translator = deepl.Translator(DEEPL_KEY)
 
 # Hugging Face API details for TTS model
 TTS_API_URL = "https://api-inference.huggingface.co/models/facebook/mms-tts-eng"
-TTS_HEADERS = {"Authorization": "Bearer"}
+TTS_HEADERS = {"Authorization": "Bearer"} # Put your changes for Key here
 
 # Define the namespace
 ns = api.namespace('translation', description='Translation services')
