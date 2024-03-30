@@ -13,7 +13,7 @@ api = Api(app, version='1.0', title='Translation API',
 os.makedirs('uploads', exist_ok=True)
 
 # Your DeepL API Key - ensure this is kept secure
-DEEPL_KEY = ""
+DEEPL_KEY = "78e6dd86-17eb-4f2a-a403-c664b6e42013:fx"
 translator = deepl.Translator(DEEPL_KEY)
 
 # Hugging Face API details for TTS model
@@ -26,11 +26,14 @@ ns = api.namespace('translation', description='Translation services')
 # The fixed string you want to translate
 FIXED_STRING = "Hello, world!"
 
-def save_translation_as_json(filename, original_text, translated_text):
+with open('uploads/transcript.json', 'r') as f:
+    data = json.load(f)
+FIXED_STRING = data.get('transcript')
+
+def save_translation_as_json(filename, translated_text):
     filepath = os.path.join('uploads', filename)
     data = {
-        "original_text": original_text,
-        "translated_text": translated_text
+        "notes": translated_text
     }
     with open(filepath, 'w', encoding='utf-8') as file:
         json.dump(data, file, ensure_ascii=False, indent=4)
@@ -51,7 +54,7 @@ class TranslateToSpanish(Resource):
     def get(self):
         try:
             result = translator.translate_text(FIXED_STRING, target_lang="ES")
-            save_translation_as_json('spanish.json', FIXED_STRING, result.text)
+            save_translation_as_json('spanish.json', result.text)
             return {'original_text': FIXED_STRING, 'translated_text': result.text}
         except Exception as e:
             return {'error': f"An error occurred: {str(e)}"}, 500
@@ -61,7 +64,7 @@ class TranslateToFrench(Resource):
     def get(self):
         try:
             result = translator.translate_text(FIXED_STRING, target_lang="FR")
-            save_translation_as_json('french.json', FIXED_STRING, result.text)
+            save_translation_as_json('french.json', result.text)
             return {'original_text': FIXED_STRING, 'translated_text': result.text}
         except Exception as e:
             return {'error': f"An error occurred: {str(e)}"}, 500
@@ -71,7 +74,7 @@ class TranslateToGerman(Resource):
     def get(self):
         try:
             result = translator.translate_text(FIXED_STRING, target_lang="DE")
-            save_translation_as_json('german.json', FIXED_STRING, result.text)
+            save_translation_as_json('german.json', result.text)
             return {'original_text': FIXED_STRING, 'translated_text': result.text}
         except Exception as e:
             return {'error': f"An error occurred: {str(e)}"}, 500
