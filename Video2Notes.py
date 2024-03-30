@@ -8,7 +8,7 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-client = OpenAI(api_key="") #Add the API Key here
+client = OpenAI(api_key="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") #Add the API Key here
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -53,7 +53,7 @@ def upload_file():
 
         # Serialize and save the notes to a local JSON file
         notes_data = {"notes": notes}
-        with open(os.path.join('uploads', 'notes.json'), 'w') as f:
+        with open(os.path.join('uploads', 'english.json'), 'w') as f:
             json.dump(notes_data, f, indent=4)
 
         # Cleanup: remove video and audio files after processing
