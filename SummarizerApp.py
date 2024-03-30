@@ -43,7 +43,12 @@ class APIQuestionGenerator(Resource):
         if response.status_code != 200:
             return {'error': 'Failed to generate question via API', 'message': response.text}, response.status_code
 
-        return response.json()
+            # Save the summary to a JSON file
+        summary = response.json()
+        file_path = os.path.join('uploads', 'summary.json')
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(summary, f, indent=4)
+            return summary
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
