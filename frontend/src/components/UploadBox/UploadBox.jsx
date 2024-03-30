@@ -54,19 +54,37 @@ export default function UploadBox() {
         isHoverable
         isPressable
         style={{
-          boxShadow: isHovered ? "0 0 60px rgba(230, 115, 28, 1)" : "0 0 30px rgba(230, 115, 28, 0.5)",
-          border: "3px dashed gray"
+          boxShadow: isHovered
+            ? "0 0 60px rgba(230, 115, 28, 1)"
+            : "0 0 30px rgba(230, 115, 28, 0.5)",
+          border: "3px dashed gray",
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => fileInputRef.current.click()}
       >
         <CardHeader className="pb-0 pt-2 px-4 flex justify-center items-center">
-          <h2 className="font-bold text-large" style={{color: "rgb(181, 179, 179)"}}>Upload your video here</h2>
+          <h2
+            className="font-bold text-large"
+            style={{ color: "rgb(181, 179, 179)" }}
+          >
+            Upload your video here
+          </h2>
         </CardHeader>
         <CardBody className="overflow-visible py-20 flex justify-center items-center">
           {isUploading ? (
-            <Progress aria-label="Loading..." value={75} className="max-w-md"/>
+            <Progress
+              aria-label="Loading..."
+              value={75}
+              isIndeterminate
+              classNames={{
+                base: "max-w-md",
+                track: "drop-shadow-md border border-default",
+                indicator: "bg-gradient-to-r from-pink-500 to-yellow-500",
+                label: "tracking-wider font-medium text-default-600",
+                value: "text-foreground/60",
+              }}
+            />
           ) : (
             <>
               <Image
@@ -76,7 +94,12 @@ export default function UploadBox() {
                 width="50%"
                 style={{ marginLeft: "50px" }}
               />
-              <input type="file" style={{ display: "none" }} onChange={handleFileSelect} ref={fileInputRef} />
+              <input
+                type="file"
+                style={{ display: "none" }}
+                onChange={handleFileSelect}
+                ref={fileInputRef}
+              />
             </>
           )}
           {notes && (
