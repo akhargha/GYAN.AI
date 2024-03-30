@@ -8,7 +8,7 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="") #Add the API Key here
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
