@@ -130,5 +130,23 @@ class TranslateToSpanishTTS(Resource):
         except Exception as e:
             return {'error': f"An error occurred: {str(e)}"}, 500
 
+@ns.route('/get-english-tts')
+class TranslateToSpanishTTS(Resource):
+    def get(self):
+        try:
+            result = translator.translate_text(FIXED_STRING, target_lang="EN-US")
+            translated_text = result.text
+            audio_bytes = text_to_speech(translated_text)
+            if audio_bytes:
+                filename = "english_tts.wav"
+                filepath = os.path.join('uploads', filename)
+                with open(filepath, 'wb') as audio_file:
+                    audio_file.write(audio_bytes)
+                return {'message': f"Audio saved as {filename}"}
+            else:
+                return {'error': "Failed to convert text to speech"}, 500
+        except Exception as e:
+            return {'error': f"An error occurred: {str(e)}"}, 500
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
