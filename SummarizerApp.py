@@ -14,7 +14,7 @@ input_model = api.model('InputText', {
 
 # Hugging Face API details for remote model
 API_URL = "https://api-inference.huggingface.co/models/Lucas-Hyun-Lee/T5_small_lecture_summarization"
-headers = {"Authorization": "Bearer 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"}
+headers = {"Authorization": "Bearer"}
 
 @ns.route('/generate-api')
 class APIQuestionGenerator(Resource):
