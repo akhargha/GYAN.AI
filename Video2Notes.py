@@ -36,6 +36,10 @@ def upload_file():
             )
         print(transcription)
 
+        transcript_data = {"transcript": transcription}
+        with open(os.path.join('uploads', 'transcript.json'), 'w') as f:
+            json.dump(transcript_data, f, indent=4)
+
         prompt_notes = "Consider yourself a student. Now create structured and detailed notes with bullet points. Please give me inferred bulleted points, not transcript " + transcription
         response = client.completions.create(
             model="gpt-3.5-turbo-instruct",

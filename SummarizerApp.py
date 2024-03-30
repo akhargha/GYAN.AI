@@ -1,6 +1,8 @@
 from flask import Flask, request
 from flask_restx import Api, Resource, fields
 import requests
+import json
+import os
 
 app = Flask(__name__)
 api = Api(app, version='1.0', title='Summarizer',
@@ -20,9 +22,9 @@ headers = {"Authorization": "Bearer"}
 class APIQuestionGenerator(Resource):
     @ns.expect(input_model)
     def post(self):
-        input_text = request.json['text']
-        if not input_text:
-            api.abort(400, 'No text provided')
+        with open('uploads/transcript.json', 'r') as f:
+            data = json.load(f)
+        input_text = data.get('transcript')
 
         # Append the prompt to the input text
         prompt_text = input_text.strip() + " Summarize the given text on the basis of above mentioned notes."
@@ -44,4 +46,4 @@ class APIQuestionGenerator(Resource):
         return response.json()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
