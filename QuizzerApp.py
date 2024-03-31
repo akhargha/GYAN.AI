@@ -1,48 +1,42 @@
-from flask import Flask, request
-from flask_restx import Api, Resource, fields
-import requests
+from flask import Flask, jsonify
+import json
+from openai import OpenAI
 
 app = Flask(__name__)
-api = Api(app, version='1.0', title='Question Generator API',
-          description='Generates a Multiple Choice Question based on the input text')
+client = OpenAI(api_key="")
 
-ns = api.namespace('question', description='Question operations')
+def generate_quiz_question(prompt_notes):
+    response = client.completions.create(
+        model="gpt-3.5-turbo-instruct",
+        prompt=prompt_notes,
+        temperature=0.5,
+        max_tokens=1024
+    )
+    notes = response.choices[0].text
+    return notes
 
-input_model = api.model('InputText', {
-    'text': fields.String(required=True, description='Input text to generate a question from'),
-})
+@app.route('/generate-quiz-question', methods=['GET'])
+def get_study_plan():
+    try:
+        # Load the topic from notes.json
+        with open('transcript.json', 'r') as file:
+            notes = json.load(file)
 
-# Hugging Face API details for remote model
-API_URL = "https://api-inference.huggingface.co/models/google/gemma-7b"
-headers = {"Authorization": ""}
+        topic = notes.get('transcript')  # Assuming 'transcript' is the correct key
 
-@ns.route('/generate-api')
-class APIQuestionGenerator(Resource):
-    @ns.expect(input_model)
-    def post(self):
-        '''Generate a Multiple Choice Question using the Hugging Face API based on the input text'''
-        input_text = request.json['text']
-        if not input_text:
-            api.abort(400, 'No text provided')
+        # Generate the study plan
+        # Prepare the prompt for the GPT model based on the topic
+        prompt_text = f"{topic} Do not rewrite script. Only  Generate 5 Multiple choice question from the given text which has 4 options each."
+        study_plan = generate_quiz_question(prompt_text)
 
-        # Append the prompt to the input text
-        prompt_text = input_text.strip() + " Create a question from the text with 4 options."
 
-        data = {
-            "inputs": prompt_text,
-            "parameters": {
-                "max_new_tokens": 200,  # Adjust based on your needs
-                "max_length": 400  # Optionally, adjust the max length if necessary
-            },
-            "options": {"wait_for_model": True}
-        }
+        # Save the study plan to strategy.json
+        with open('question.json', 'w') as outfile:
+            json.dump({"question": study_plan}, outfile, indent=4)
 
-        response = requests.post(API_URL, headers=headers, json=data)
-
-        if response.status_code != 200:
-            return {'error': 'Failed to generate question via API', 'message': response.text}, response.status_code
-
-        return response.json()
+        return jsonify({"question": study_plan})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5004)
+    app.run(debug=True)
