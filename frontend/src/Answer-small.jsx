@@ -4,7 +4,7 @@ import NavBarUser from "./components/NavBar/NavBarUser";
 import FeatureTab from "./components/FeatureTab/FeatureTab";
 
 import useSound from 'use-sound'
-import mySound from './audio.mp3' // Your sound file path here
+import mySound from '/Users/anupamkhargharia/Documents/GYAN.AI/uploads/english_tts.mp3' // Your sound file path here
 
 import {
   Dropdown,
