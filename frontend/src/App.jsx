@@ -1,13 +1,14 @@
 import React from "react";
 import NavBar from "./components/NavBar/NavBar"
 
-
 export default function App() {
+
   return (
     <div
       style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
     >
       <NavBar/>
+
       <footer style={{
         width: '100%',
         position: 'sticky',
