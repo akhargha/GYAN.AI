@@ -16,12 +16,12 @@ CORS(app)
 os.makedirs('uploads', exist_ok=True)
 
 # Your DeepL API Key - ensure this is kept secure
-DEEPL_KEY = ""
+DEEPL_KEY = "78e6dd86-17eb-4f2a-a403-c664b6e42013:fx"
 translator = deepl.Translator(DEEPL_KEY)
 
 # Hugging Face API details for TTS model
 TTS_API_URL = "https://api-inference.huggingface.co/models/facebook/mms-tts-eng"
-TTS_HEADERS = {"Authorization":  "Bearer "} # Put your changes for Key here
+TTS_HEADERS = {"Authorization":  "Bearer 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"} # Put your changes for Key here
 
 # Define the namespace
 ns = api.namespace('translation', description='Translation services')
@@ -90,7 +90,7 @@ class TranslateToSpanishTTS(Resource):
             translated_text = result.text
             audio_bytes = text_to_speech(translated_text)
             if audio_bytes:
-                filename = "spanish_tts.wav"
+                filename = "spanish_tts.mp3"
                 filepath = os.path.join('uploads', filename)
                 with open(filepath, 'wb') as audio_file:
                     audio_file.write(audio_bytes)
@@ -108,7 +108,7 @@ class TranslateToSpanishTTS(Resource):
             translated_text = result.text
             audio_bytes = text_to_speech(translated_text)
             if audio_bytes:
-                filename = "french_tts.wav"
+                filename = "french_tts.mp3"
                 filepath = os.path.join('uploads', filename)
                 with open(filepath, 'wb') as audio_file:
                     audio_file.write(audio_bytes)
@@ -126,7 +126,7 @@ class TranslateToSpanishTTS(Resource):
             translated_text = result.text
             audio_bytes = text_to_speech(translated_text)
             if audio_bytes:
-                filename = "german_tts.wav"
+                filename = "german_tts.mp3"
                 filepath = os.path.join('uploads', filename)
                 with open(filepath, 'wb') as audio_file:
                     audio_file.write(audio_bytes)
@@ -144,7 +144,7 @@ class TranslateToSpanishTTS(Resource):
             translated_text = result.text
             audio_bytes = text_to_speech(translated_text)
             if audio_bytes:
-                filename = "english_tts.wav"
+                filename = "english_tts.mp3"
                 filepath = os.path.join('uploads', filename)
                 with open(filepath, 'wb') as audio_file:
                     audio_file.write(audio_bytes)
