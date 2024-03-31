@@ -1,4 +1,4 @@
-# GYAN.AI
+# G(Y)AN.AI
 
 ## Bridging Educational Gaps with AI
 
