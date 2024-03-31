@@ -51,20 +51,18 @@ class Chat(Resource):
 
         # Load notes and append to the user's question
         notes = load_notes()
-        prompt = f"{notes}\n\n{question}"
+        prompt = f"Your name is GyanBot and you only answer questions from the knowledge you get from the fed information. {notes}\n\n{question}"
+        print(prompt)
 
-        # ChatGPT API call
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo-0125",
-            response_format={"type": "json_object"},
-            messages=[
-                {"role": "system", "content": "Your name is GyanBot and you only answer questions form the knowledge you get from the fed information."},
-                {"role": "user", "content": prompt}
-            ]
+        response = client.completions.create(
+            model="gpt-3.5-turbo-instruct",
+            prompt=prompt,
+            temperature=0.5,
+            max_tokens=1024
         )
 
         # Extract the response content
-        answer = response.choices[0].message.content
+        answer = response.choices[0].text
 
         # Save the conversation
         save_conversation(question, answer)
@@ -73,4 +71,4 @@ class Chat(Resource):
         return {"answer": answer}
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5005)
