@@ -89,11 +89,14 @@ export default function FeaturesTab() {
           <Card>
             <CardBody className="p-4 max-w-[1200px] min-w-[1200px]">
               {tab.id === "ask-questions" ? (
-                <>
+                <div style={{ padding: "40px" }}>
                   <ul>
                     {tab.content.map((conversation, index) => (
                       <li key={index} style={{ marginBottom: "20px" }}>
-                        <div className="flex items-center gap-2">
+                        <div
+                          className="flex items-center gap-2"
+                          style={{ paddingBottom: "15px" }}
+                        >
                           <Avatar
                             isBordered
                             src="https://i.ibb.co/V3g32fQ/DSC-6030-2.jpg"
@@ -111,8 +114,13 @@ export default function FeaturesTab() {
                             User: <br />
                           </h3>
                         </div>
-                        <p>{conversation.question}</p>
-                        <div className="flex items-center gap-2">
+                        <p style={{ paddingBottom: "30px" }}>
+                          {conversation.question}
+                        </p>
+                        <div
+                          className="flex items-center gap-2"
+                          style={{ paddingBottom: "15px" }}
+                        >
                           <Avatar
                             isBordered
                             src="https://bootstraplogos.com/wp-content/uploads/edd/2018/07/logo.png"
@@ -138,29 +146,32 @@ export default function FeaturesTab() {
                       onSubmit={handleSubmit}
                       style={{ marginBottom: "20px" }}
                     >
-                      <Input
-                        clearable
-                        bordered
-                        fullWidth
-                        color="primary"
-                        size="lg"
-                        placeholder="Your question"
-                        value={newQuestion}
-                        onChange={handleInputChange}
-                      />
-                      <Button
-                        auto
-                        type="submit"
-                        color="primary"
-                        style={{ marginTop: "10px" }}
-                      >
-                        Submit
-                      </Button>
+                      <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
+                        <Input
+                          clearable
+                          bordered
+                          color="warning"
+                          size="lg"
+                          placeholder="Your question"
+                          value={newQuestion}
+                          onChange={handleInputChange}
+                        />
+                        <Button
+                          auto
+                          type="submit"
+                          color="warning"
+                          style={{ minHeight: "45px" }}
+                        >
+                          Submit
+                        </Button>
+                      </div>
                     </form>
                   </ul>
-                </>
+                </div>
               ) : (
-                <pre>{tab.content}</pre>
+                <pre style={{ whiteSpace: "pre-wrap", wordWrap: "break-word" }}>
+                  {tab.content}
+                </pre>
               )}
             </CardBody>
           </Card>

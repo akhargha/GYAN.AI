@@ -87,6 +87,34 @@ class Chat(Resource):
 
         # Return the answer
         return {"answer": answer}
+    
+@api.route('/test')
+class Chat(Resource):
+    @api.expect(chat_model)
+    def post(self):
+        data = request.json
+        question = data.get('question')
+
+        # Load notes and append to the user's question
+        notes = load_notes()
+        prompt = f"Your name is GyanBot and you only answer questions from the knowledge you get from the fed information. {notes}\n\n{question}"
+        print(prompt)
+
+        response = client.completions.create(
+            model="gpt-3.5-turbo-instruct",
+            prompt=prompt,
+            temperature=0.5,
+            max_tokens=1024
+        )
+
+        # Extract the response content
+        answer = response.choices[0].text
+
+        # Save the conversation
+        save_conversation(question, answer)
+
+        # Return the answer
+        return {"answer": answer}
 
 if __name__ == '__main__':
     app.run(debug=True, port=5005)

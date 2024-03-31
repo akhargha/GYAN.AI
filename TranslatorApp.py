@@ -17,7 +17,7 @@ os.makedirs('uploads', exist_ok=True)
 
 # Your DeepL API Key - ensure this is kept secure
 DEEPL_KEY = ""
-translator = deepl.Translator(DEEPL_KEY)
+translator = deepl.Translator("")
 
 # Hugging Face API details for TTS model
 TTS_API_URL = "https://api-inference.huggingface.co/models/facebook/mms-tts-eng"
