@@ -23,6 +23,10 @@ Flask is a lightweight WSGI web application framework in Python, offering simpli
 - **Vite**: A modern front-end build tool that significantly improves the development experience. Vite leverages esbuild for fast cold starts and hot module replacement (HMR), making the development process faster and more efficient.
 - **NextUI**: A React UI library that provides beautifully designed and high-performance components out of the box. NextUI is used to craft the aesthetic elements of GYAN.AI, ensuring that the application is not only functional but also visually appealing.
 
+#### Fine-Tuned LLMs
+
+Gemma-2B was fine-tuned for the summarizer funcationality to reduce its creativity & Mistral-7B-v01 was fine tuned as well to provide better quiz functionality & accuracy.
+
 #### AI & ML Models
 
 - **OpenAI Whisper**: An automatic speech recognition (ASR) system designed for robustness and versatility across different types of audio. In GYAN.AI, Whisper is used to transcribe educational videos with high accuracy, facilitating the creation of structured notes and making content accessible to hearing-impaired learners.
