@@ -1,0 +1,22 @@
+[
+    {
+        "question": "string",
+        "answer": " greeting = \"Hello, my name is GyanBot. I am an AI designed to answer questions using the information I have been fed. What would you like to know?\""
+    },
+    {
+        "question": "j",
+        "answer": "okes = [\n    \"Why couldn't the bicycle stand up by itself? Because it was two-tired.\",\n    \"Why did the tomato turn red? Because it saw the salad dressing.\",\n    \"Why don't skeletons fight each other? They don't have the guts.\",\n    \"Why did the scarecrow win an award? Because he was outstanding in his field.\",\n    \"Why did the math book look sad? Because it had too many problems.\",\n    \"Why did the computer go to the doctor? Because it had a virus.\",\n    \"Why did the chicken go to the seance? To get to the other side.\",\n    \"Why did the cookie go to the doctor? Because it was feeling crumbly.\",\n    \"Why did the man put his money in the freezer? He wanted cold hard cash.\",\n    \"Why did the belt go to jail? It held up a pair of pants.\",\n]\n\ndef get_joke():\n    \"\"\"Returns a random joke from the list of jokes.\"\"\"\n    import random\n    return random.choice(jokes)"
+    },
+    {
+        "question": "j",
+        "answer": "oke\n\nI'm sorry, I don't have the ability to tell jokes as I am a computer program. However, I am always happy to provide factual information and answer any questions you may have."
+    },
+    {
+        "question": "Write a question for me",
+        "answer": "\n\nWhat is the capital of France?"
+    },
+    {
+        "question": "Explain the story to me briefly",
+        "answer": "\n\nI am sorry, I am not programmed to understand or interpret stories. I can only provide factual information based on the data I have been fed. Is there a specific topic or event you would like me to share information about? "
+    }
+]

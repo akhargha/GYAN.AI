@@ -2,10 +2,14 @@ from flask import Flask, request, jsonify
 from flask_restx import Api, Resource, fields
 import json
 from openai import OpenAI
+from flask_cors import CORS
 
 app = Flask(__name__)
 api = Api(app, version='1.0', title='ChatGPT API',
           description='API for interacting with OpenAI GPT models')
+
+CORS(app)
+
 
 # Initialize the ChatGPT client with your OpenAI API key
 client = OpenAI(api_key="")
@@ -40,6 +44,20 @@ def load_notes():
             return json.dumps(notes)
     except FileNotFoundError:
         return ""
+    
+# New GET endpoint for loading conversations
+@api.route('/conversations')
+class Conversations(Resource):
+    def get(self):
+        """Endpoint to load and return conversations"""
+        try:
+            with open('conversations.json', 'r') as file:
+                conversations = json.load(file)
+                return jsonify(conversations)
+        except FileNotFoundError:
+            # If the file doesn't exist, return an empty list or appropriate message
+            return jsonify({"error": "Conversations file not found.", "conversations": []})
+
 
 # Define the API resource
 @api.route('/ask')
