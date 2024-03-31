@@ -84,6 +84,7 @@ export default function FeaturesTab() {
       variant="bordered"
       size="lg"
     >
+      
       {tabs.map((tab) => (
         <Tab key={tab.id} title={tab.label}>
           <Card>

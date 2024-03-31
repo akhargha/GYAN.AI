@@ -1,7 +1,10 @@
 import React from "react";
 import ResponseBox from "./components/ResponseBox/ResponseBox";
 import NavBarUser from "./components/NavBar/NavBarUser";
-import FeatureTab from "./components/FeatureTab/FeatureTab"
+import FeatureTab from "./components/FeatureTab/FeatureTab";
+
+import useSound from 'use-sound'
+import mySound from './audio.mp3' // Your sound file path here
 
 import {
   Dropdown,
@@ -20,6 +23,8 @@ export default function Answer() {
     [selectedKeys]
   );
 
+  const [playSound] = useSound(mySound)
+
   React.useEffect(() => {
     if (selectedKeys.has("notes")) {
       setSelectedDisplay("Language");
@@ -28,12 +33,22 @@ export default function Answer() {
     }
   }, [selectedKeys, selectedValue]);
 
+  const playAudio = () => {
+    useSound(mySound)
+    /**
+    // Adjust the path based on your server setup.
+    const audioFilePath = `../uploads/${selectedValue.toLowerCase()}_tts.wav`;
+    const audio = new Audio(audioFilePath);
+    audio.play().catch(error => console.error("Error playing the audio file:", error));
+     */
+  };
+
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center", // Center horizontally
+        alignItems: "center",
         minHeight: "100vh",
       }}
     >
@@ -47,7 +62,7 @@ export default function Answer() {
       >
         Notes
       </h1>
-      <div style={{ paddingLeft: "900px"}}>
+      <div style={{ paddingLeft: "900px" }}>
         <Dropdown>
           <DropdownTrigger>
             <Button variant="bordered" className="capitalize">
@@ -70,10 +85,28 @@ export default function Answer() {
           </DropdownMenu>
         </Dropdown>
       </div>
-      <div style={{ minWidth: "1000px", paddingTop: "20px", paddingBottom: "50px" }}>
+      <div
+        style={{
+          minWidth: "1000px",
+          paddingTop: "20px",
+          paddingBottom: "50px",
+        }}
+      >
         <ResponseBox language={selectedValue} />
+        <div style={{ paddingTop: "10px", paddingLeft: "950px" }}>
+          <Button
+            isIconOnly
+            color="warning"
+            variant="faded"
+            aria-label="Take a photo"
+            size="lg"
+            onClick={() => playSound()} // Added onClick event handler to play audio
+          >
+            <i className="fa-solid fa-volume-high"></i>
+          </Button>
+        </div>
       </div>
-      
+
       <FeatureTab />
     </div>
   );
