@@ -19,7 +19,7 @@ export default function Upload() {
               paddingTop: "40px",
             }}
           >
-            <h1>Get study help automatically for your classes</h1>
+            <h1>Instant Study Help</h1>
             <h1
               style={{
                 backgroundImage: "linear-gradient(to right, #EDE342, #FF51EB)",
@@ -27,7 +27,7 @@ export default function Upload() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              AI Powered.
+              AI-Powered.
             </h1>
           </article>
           <div style={{ marginTop: "40px", marginBottom: "40px" }}>
