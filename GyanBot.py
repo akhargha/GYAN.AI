@@ -10,7 +10,6 @@ api = Api(app, version='1.0', title='ChatGPT API',
 
 CORS(app)
 
-
 # Initialize the ChatGPT client with your OpenAI API key
 client = OpenAI(api_key="")
 
@@ -18,6 +17,7 @@ client = OpenAI(api_key="")
 chat_model = api.model('ChatRequest', {
     'question': fields.String(required=True, description='The user question'),
 })
+
 
 # Load initial conversation history from a JSON file
 def load_conversations():
@@ -27,13 +27,16 @@ def load_conversations():
     except FileNotFoundError:
         return []
 
+
 conversations = load_conversations()
+
 
 # Function to append conversation to a JSON file
 def save_conversation(question, answer):
     conversations.append({"question": question, "answer": answer})
     with open('conversations.json', 'w') as file:
         json.dump(conversations, file, indent=4)
+
 
 # Function to load notes from Notes.json
 def load_notes():
@@ -44,7 +47,8 @@ def load_notes():
             return json.dumps(notes)
     except FileNotFoundError:
         return ""
-    
+
+
 # New GET endpoint for loading conversations
 @api.route('/conversations')
 class Conversations(Resource):
@@ -87,7 +91,8 @@ class Chat(Resource):
 
         # Return the answer
         return {"answer": answer}
-    
+
+
 @api.route('/test')
 class Chat(Resource):
     @api.expect(chat_model)
@@ -115,6 +120,7 @@ class Chat(Resource):
 
         # Return the answer
         return {"answer": answer}
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5005)
