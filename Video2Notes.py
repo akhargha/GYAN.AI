@@ -66,4 +66,4 @@ def upload_file():
 if __name__ == '__main__':
     if not os.path.exists('uploads'):
         os.mkdir('uploads')
-    app.run(debug=True)
+    app.run(debug=True, port=5000)

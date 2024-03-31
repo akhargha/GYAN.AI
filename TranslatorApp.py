@@ -1,19 +1,22 @@
 import os
 import json
-from flask import Flask, Response
+from flask import Flask
 from flask_restx import Api, Resource
 import deepl
 import requests
+from flask_cors import CORS  # Import CORS
 
 app = Flask(__name__)
 api = Api(app, version='1.0', title='Translation API',
           description='Translates a fixed string to Spanish using DeepL API')
 
+CORS(app)
+
 # Ensure the uploads directory exists
 os.makedirs('uploads', exist_ok=True)
 
 # Your DeepL API Key - ensure this is kept secure
-DEEPL_KEY = "78e6dd86-17eb-4f2a-a403-c664b6e42013:fx"
+DEEPL_KEY = ""
 translator = deepl.Translator(DEEPL_KEY)
 
 # Hugging Face API details for TTS model
@@ -26,9 +29,9 @@ ns = api.namespace('translation', description='Translation services')
 # The fixed string you want to translate
 FIXED_STRING = "Hello, world!"
 
-with open('uploads/transcript.json', 'r') as f:
+with open('uploads/notes.json', 'r') as f:
     data = json.load(f)
-FIXED_STRING = data.get('transcript')
+FIXED_STRING = data.get('notes')
 
 def save_translation_as_json(filename, translated_text):
     filepath = os.path.join('uploads', filename)
@@ -152,4 +155,4 @@ class TranslateToSpanishTTS(Resource):
             return {'error': f"An error occurred: {str(e)}"}, 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5001)

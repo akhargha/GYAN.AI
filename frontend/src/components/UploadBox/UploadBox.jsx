@@ -23,28 +23,48 @@ export default function UploadBox() {
     }
   }, [selectedFile]);
 
-  const uploadFile = () => {
+  const uploadFile = async () => {
     if (!selectedFile) return;
     setIsUploading(true); // Start the upload process
 
     const formData = new FormData();
     formData.append("file", selectedFile);
 
-    axios
-      .post("http://localhost:5000/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        setIsUploading(false); // Stop the upload process
-        setNotes(response.data.notes); // Update the notes state with the received data
-        window.location.href = "/answer.html"; // Redirect to a different page
-      })
-      .catch((error) => {
-        setIsUploading(false); // In case of error, stop the upload process
-        alert("Error uploading file");
-      });
+    try {
+      const uploadResponse = await axios.post(
+        "http://localhost:5000/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      setNotes(uploadResponse.data.notes); // Update the notes state with the received data
+
+      // Now, make additional requests for translations
+      const translateEndpoints = [
+        { language: "Spanish", url: "http://127.0.0.1:5001/translation/get-spanish" },
+        { language: "French", url: "http://127.0.0.1:5001/translation/get-french" },
+        { language: "German", url: "http://127.0.0.1:5001/translation/get-german" },
+        // Add more endpoints as needed
+      ];
+
+      for (const endpoint of translateEndpoints) {
+        const response = await axios.get(endpoint.url);
+        // Handle the response for each language translation
+        // For example, you can set state or log the translation
+        console.log(`${endpoint.language} translation:`, response.data);
+      }
+
+      // After all translations, redirect or perform further actions
+      window.location.href = "/answer.html"; // Redirect to a different page
+    } catch (error) {
+      console.error("Error during the file upload and processing:", error);
+      alert("Error uploading file");
+    } finally {
+      setIsUploading(false); // Stop the upload process regardless of outcome
+    }
   };
 
   return (
