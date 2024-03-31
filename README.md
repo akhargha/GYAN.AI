@@ -25,7 +25,8 @@ Flask is a lightweight WSGI web application framework in Python, offering simpli
 
 #### Fine-Tuned LLMs
 
-Google T-5 LLM was fine-tuned for the summarizer funcationality to reduce its creativity & Mistral-7B-v01 was fine tuned as well to provide better quiz functionality & accuracy.
+Google T-5 LLM was fine-tuned for the summarizer funcationality to reduce its creativity & Mistral-7B-v01 was fine tuned as well to provide better quiz functionality & accuracy. These LLMs were fine-tuned by Supervised Training using informational & news datasets. Pipelines & transformers were used to augment the LLMs such that their answers become more oriented towards the input provided.
+
 The links to these models are as:
 ##### https://huggingface.co/Lucas-Hyun-Lee/T5_small_lecture_summarization #####
 <img width="742" alt="Screenshot 2024-03-31 at 9 28 00 AM" src="https://github.com/akhargha/GYAN.AI/assets/50960480/453e7eaf-550a-4432-bd29-c0e17ce95f04">
