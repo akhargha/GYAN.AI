@@ -12,7 +12,7 @@ import axios from "axios"; // Ensure axios is installed for HTTP requests
 
 // Import your JSON files for other tabs, if they exist
 import summaryData from "../../../../uploads/summary.json";
-import questionData from "../../../../uploads/question.json";
+import questionData from "../../../../uploads/quiz.json";
 import strategyData from "../../../../uploads/strategy.json";
 
 export default function FeaturesTab() {
@@ -25,12 +25,12 @@ export default function FeaturesTab() {
     {
       id: "question",
       label: "Questions",
-      content: questionData.notes,
+      content: questionData ? questionData[0].generated_text : null,
     },
     {
       id: "strategy",
       label: "Strategy",
-      content: strategyData.notes,
+      content: strategyData ? strategyData[0].summary_text : null,
     },
     // Initially, conversation data is empty; it will be populated via useEffect
     {
@@ -168,11 +168,11 @@ export default function FeaturesTab() {
                     </form>
                   </ul>
                 </div>
-              ) : (
+              ) : tab.content ? (
                 <pre style={{ whiteSpace: "pre-wrap", wordWrap: "break-word" }}>
                   {tab.content}
                 </pre>
-              )}
+              ) : null}
             </CardBody>
           </Card>
         </Tab>
