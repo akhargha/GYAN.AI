@@ -30,7 +30,7 @@ export default function FeaturesTab() {
     {
       id: "strategy",
       label: "Strategy",
-      content: strategyData ? strategyData[0].summary_text : null,
+      content: strategyData ? strategyData.study_plan : null,
     },
     // Initially, conversation data is empty; it will be populated via useEffect
     {

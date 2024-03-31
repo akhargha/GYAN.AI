@@ -34,5 +34,9 @@
     {
         "question": "What age should I tell this story to?",
         "answer": "\n\nThis story can be told to children of any age, as it teaches important lessons about not judging others and the value of friendship. However, it may be more appropriate for older children who can understand the concepts and implications of the story."
+    },
+    {
+        "question": "What are the main characters in this story?",
+        "answer": "\n\nThe main characters in this story are the ant, the dove, and the hunter."
     }
 ]

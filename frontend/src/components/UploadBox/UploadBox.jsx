@@ -53,6 +53,8 @@ export default function UploadBox() {
       for (const endpoint of translateEndpoints) {
         const response = await axios.get(endpoint.url);
         const summaryResponse = await axios.post("http://127.0.0.1:5002/InputText/generate-api");
+        const strategy = await axios.get('http://127.0.0.1:5007/generate-study-plan');
+        const quiz = await axios.post("http://127.0.0.1:5004/question/generate-api");
         // Handle the response for each language translation
         // For example, you can set state or log the translation
         console.log(`${endpoint.language} translation:`, response.data);
