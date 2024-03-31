@@ -1,1 +1,36 @@
 # GYAN.AI
+
+## Bridging Educational Gaps with AI
+
+GYAN.AI is a cutting-edge educational platform designed to empower students with learning and hearing disabilities, facilitating a more inclusive learning environment. By leveraging advanced AI technologies, GYAN.AI offers a comprehensive solution to the challenges faced by individuals in their educational journey due to disabilities, inconsistent note-taking support, and limited resources.
+
+### Key Features
+
+- **Video to Structured Notes**: Converts educational videos into structured notes, making content accessible in English, Spanish, German, and Italian.
+- **AI-Powered ChatBot**: Engage with an AI ChatBot for practicing questions and reinforcing learning concepts in a conversational manner.
+- **Summarization Tool**: Utilizes the Hyperparameter Fine-Tuned Google Gemma 2 B model for generating concise summaries of educational content.
+- **Text-to-Speech**: Enhances learning with text-to-speech functionality, available in all supported languages, aiding visually impaired students.
+
+### Technologies & AI Models Used
+
+#### Backend: Flask
+
+Flask is a lightweight WSGI web application framework in Python, offering simplicity, flexibility, and fine-grained control. It serves as the backbone of GYAN.AI, handling server-side operations, APIs, and integration with AI models. Its minimalistic and modular design allows for rapid development and deployment of web services.
+
+#### Frontend: React, Vite, NextUI
+
+- **React**: A declarative, efficient, and flexible JavaScript library for building user interfaces. React enables GYAN.AI to have a dynamic and responsive front-end, enhancing user experience by making the interface intuitive and interactive.
+- **Vite**: A modern front-end build tool that significantly improves the development experience. Vite leverages esbuild for fast cold starts and hot module replacement (HMR), making the development process faster and more efficient.
+- **NextUI**: A React UI library that provides beautifully designed and high-performance components out of the box. NextUI is used to craft the aesthetic elements of GYAN.AI, ensuring that the application is not only functional but also visually appealing.
+
+#### AI & ML Models
+
+- **OpenAI Whisper**: An automatic speech recognition (ASR) system designed for robustness and versatility across different types of audio. In GYAN.AI, Whisper is used to transcribe educational videos with high accuracy, facilitating the creation of structured notes and making content accessible to hearing-impaired learners.
+- **GPT-4 Turbo**: An advanced iteration of OpenAI's language models, offering powerful natural language understanding and generation. It powers the ChatBot in GYAN.AI, providing users with interactive learning experiences and personalized practice questions.
+- **Facebook Text to Speech**: A state-of-the-art text-to-speech (TTS) technology that converts written text into natural-sounding speech in multiple languages. This feature supports visually impaired students by reading out content in the language of their choice.
+- **DeepL**: Renowned for its quality and accuracy in translations, DeepL supports language translation within GYAN.AI, ensuring that notes and educational materials are accessible in English, Spanish, German, and Italian.
+- **Google Gemma 2 B**: A model fine-tuned for summarization tasks, Gemma 2 B is used to distill lengthy educational materials into concise summaries. This aids in quick revision and understanding of key concepts, benefiting all learners, especially those with learning disabilities.
+
+### Conclusion
+
+The integration of these technologies and AI models makes GYAN.AI a powerful platform for educational accessibility. By leveraging Flask's flexibility, React's dynamic interfaces, and cutting-edge AI for content transcription, translation, summarization, and interaction, GYAN.AI offers a comprehensive and inclusive learning experience for students with disabilities, ensuring no learner is left behind.
