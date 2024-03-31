@@ -28,6 +28,8 @@ Flask is a lightweight WSGI web application framework in Python, offering simpli
 Google T-5 LLM was fine-tuned for the summarizer funcationality to reduce its creativity & Mistral-7B-v01 was fine tuned as well to provide better quiz functionality & accuracy.
 The links to these models are as:
 ##### https://huggingface.co/Lucas-Hyun-Lee/T5_small_lecture_summarization #####
+<img width="742" alt="Screenshot 2024-03-31 at 9 28 00 AM" src="https://github.com/akhargha/GYAN.AI/assets/50960480/453e7eaf-550a-4432-bd29-c0e17ce95f04">
+This is the rouge score of our finetuned model. And A good ROUGE score varies by summarization task and metric. ROUGE-1 scores are excellent around 0.5, with scores above 0.5 considered good and 0.4 to 0.5 moderate. For ROUGE-2, scores above 0.4 are good, and 0.2 to 0.4 are moderate. ROUGE-L scores are good around 0.4 and low at 0.3 to 0.4
 ##### https://huggingface.co/Lucas-Hyun-Lee/Mistral_7b_question_generation_v1 #####
 
 #### AI & ML Models
