@@ -37,13 +37,13 @@ export default function ResponseBox({ language }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoaded(true);
-    }, 5000); // Change to false after 5 seconds
+    }, 3000); // Change to false after 5 seconds
     return () => clearTimeout(timer);
   }, [notesData]);
 
   return (
     <div>
-      <Card className="py-5 max-w-[700px]">
+      <Card className="py-5 max-w-[1000px]">
         <CardBody>
           {!isLoaded || !notesData ? (
             <div className="space-y-3">

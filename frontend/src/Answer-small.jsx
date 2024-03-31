@@ -12,11 +12,21 @@ import {
 
 export default function Answer() {
   const [selectedKeys, setSelectedKeys] = React.useState(new Set(["notes"]));
+  const [selectedDisplay, setSelectedDisplay] = React.useState("Language");
 
   const selectedValue = React.useMemo(
     () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
     [selectedKeys]
   );
+
+  React.useEffect(() => {
+    if (selectedKeys.has("notes")) {
+      setSelectedDisplay("Language");
+    } else {
+      setSelectedDisplay(selectedValue);
+    }
+  }, [selectedKeys, selectedValue]);
+
   return (
     <div
       style={{
@@ -36,11 +46,11 @@ export default function Answer() {
       >
         Notes
       </h1>
-      <div style={{ paddingLeft: "600px"}}>
+      <div style={{ paddingLeft: "900px"}}>
         <Dropdown>
           <DropdownTrigger>
             <Button variant="bordered" className="capitalize">
-              {selectedValue}
+              {selectedDisplay}
             </Button>
           </DropdownTrigger>
           <DropdownMenu
@@ -51,6 +61,7 @@ export default function Answer() {
             selectedKeys={selectedKeys}
             onSelectionChange={setSelectedKeys}
           >
+            <DropdownItem key="notes">Language</DropdownItem>
             <DropdownItem key="English">English</DropdownItem>
             <DropdownItem key="French">French</DropdownItem>
             <DropdownItem key="German">German</DropdownItem>
@@ -58,8 +69,8 @@ export default function Answer() {
           </DropdownMenu>
         </Dropdown>
       </div>
-      <div style={{ minWidth: "700px", paddingTop: "20px" }}>
-      <ResponseBox language={selectedValue} />
+      <div style={{ minWidth: "1000px", paddingTop: "20px" }}>
+        <ResponseBox language={selectedValue} />
       </div>
     </div>
   );
