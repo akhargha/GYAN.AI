@@ -5,7 +5,7 @@ import os
 from openai import OpenAI
 
 app = Flask(__name__)
-client = OpenAI(api_key="")
+client = OpenAI(api_key="") # GPT Key
 
 def generate_study_plan(prompt_notes):
     response = client.completions.create(
