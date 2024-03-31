@@ -27,8 +27,8 @@ Flask is a lightweight WSGI web application framework in Python, offering simpli
 
 Google T-5 LLM was fine-tuned for the summarizer funcationality to reduce its creativity & Mistral-7B-v01 was fine tuned as well to provide better quiz functionality & accuracy.
 The links to these models are as:
-### https://huggingface.co/Lucas-Hyun-Lee/T5_small_lecture_summarization ###
-### https://huggingface.co/Lucas-Hyun-Lee/Mistral_7b_question_generation_v1 ###
+##### https://huggingface.co/Lucas-Hyun-Lee/T5_small_lecture_summarization #####
+##### https://huggingface.co/Lucas-Hyun-Lee/Mistral_7b_question_generation_v1 #####
 
 #### AI & ML Models
 
