@@ -26,9 +26,11 @@ export default function ResponseBox({ language }) {
   useEffect(() => {
     if (notesData && index < notesData.notes.length) {
       const timer = setTimeout(() => {
-        setTypedText((prevTypedText) => prevTypedText + notesData.notes.charAt(index));
+        setTypedText(
+          (prevTypedText) => prevTypedText + notesData.notes.charAt(index)
+        );
         setIndex((prevIndex) => prevIndex + 1);
-      }, 60); // Adjust the delay to control typing speed
+      }, 35); // Adjust the delay to control typing speed
       return () => clearTimeout(timer);
     }
   }, [index, notesData]);
@@ -58,10 +60,12 @@ export default function ResponseBox({ language }) {
               </Skeleton>
             </div>
           ) : (
-            <pre>{typedText}</pre>
+            <pre style={{ whiteSpace: "pre-wrap", wordWrap: "break-word" }}>
+              {typedText}
+            </pre>
           )}
         </CardBody>
       </Card>
-    </div>  
+    </div>
   );
 }

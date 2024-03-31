@@ -1,6 +1,7 @@
 import React from "react";
 import ResponseBox from "./components/ResponseBox/ResponseBox";
 import NavBarUser from "./components/NavBar/NavBarUser";
+import FeatureTab from "./components/FeatureTab/FeatureTab"
 
 import {
   Dropdown,
@@ -69,9 +70,11 @@ export default function Answer() {
           </DropdownMenu>
         </Dropdown>
       </div>
-      <div style={{ minWidth: "1000px", paddingTop: "20px" }}>
+      <div style={{ minWidth: "1000px", paddingTop: "20px", paddingBottom: "50px" }}>
         <ResponseBox language={selectedValue} />
       </div>
+      
+      <FeatureTab />
     </div>
   );
 }
