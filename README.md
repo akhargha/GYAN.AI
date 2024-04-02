@@ -17,7 +17,6 @@ Before you begin, ensure you have met the following requirements:
 - Python 3.x installed on your system.
 - Pip (Python Package Installer).
 - Git (optional, for cloning the repository).
-- [Any other prerequisites].
 
 ## Installation
 
@@ -35,20 +34,20 @@ Follow these steps to install the application:
 
 ## Running the Application
 
-```bash
-python Video2Notes.py
-python SummarizerApp.py
-python StrategizerApp.py
-python GyanBot.py
-python TranslatorApp.py
-python QuizzerApp.py
+   ```bash
+   python Video2Notes.py
+   python SummarizerApp.py
+   python StrategizerApp.py
+   python GyanBot.py
+   python TranslatorApp.py
+   python QuizzerApp.py
 
-cd frontend
-npm run dev
+   cd frontend
+   npm run dev
+   ```
 
 
-
-### Technologies & AI Models Used
+###  Technologies & AI Models Used
 
 #### Backend: Flask
 
