@@ -29,9 +29,26 @@ Follow these steps to install the application:
    
 
 2. **Go to the directory**
-   '''bash
+   ```bash
    cd GYAN.AI
    pip install -r requirements.txt
+
+## Running the Application
+
+```bash
+python Video2Notes.py
+python SummarizerApp.py
+python StrategizerApp.py
+python GyanBot.py
+python TranslatorApp.py
+python QuizzerApp.py
+
+After that,
+
+```bash
+cd frontend
+npm run dev
+
 
 
 ### Technologies & AI Models Used
