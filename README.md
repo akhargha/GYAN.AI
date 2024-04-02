@@ -11,6 +11,29 @@ GYAN.AI is a cutting-edge educational platform designed to empower students with
 - **Summarization Tool**: Utilizes the Hyperparameter Fine-Tuned Google Gemma 2 B model for generating concise summaries of educational content.
 - **Text-to-Speech**: Enhances learning with text-to-speech functionality, available in all supported languages, aiding visually impaired students.
 
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+- Python 3.x installed on your system.
+- Pip (Python Package Installer).
+- Git (optional, for cloning the repository).
+- [Any other prerequisites].
+
+## Installation
+
+Follow these steps to install the application:
+
+1. **Clone the repository (optional):**
+   ```bash
+   git clone https://github.com/akhargha/GYAN.AI
+   
+
+2. **Go to the directory**
+   '''bash
+   cd GYAN.AI
+   pip install -r requirements.txt
+
+
 ### Technologies & AI Models Used
 
 #### Backend: Flask
