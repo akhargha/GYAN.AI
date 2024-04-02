@@ -43,9 +43,6 @@ python GyanBot.py
 python TranslatorApp.py
 python QuizzerApp.py
 
-After that,
-
-```bash
 cd frontend
 npm run dev
 
